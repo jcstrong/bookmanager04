@@ -20,5 +20,6 @@ from django.urls import path
 from book_drf import views
 
 urlpatterns = [
+    path('book_drf/<int:pk>', views.Books.as_view()),
     path('book_drf/', views.Books.as_view()),
 ]
