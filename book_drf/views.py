@@ -56,17 +56,8 @@ class Books(View):
         data_dict = json.loads(data)  # 转换成字典形式
         # 2、验证数据
         ser = BookSerializer(data=data_dict)
+        ser.is_valid()
         # 3、保存数据
-        if bpub_date is None or bpub_date is None:
-            return JsonResponse({'error': '无数据'}, status=400)
-        book = BookInfo.objects.create(btitle=btitle, bpub_date=bpub_date)
+        ser.save()
         # 4、返回结果
-        return JsonResponse(
-            {
-                'id': book.id,
-                'btitle': book.btitle,
-                'bread': book.bread,
-                'bcomment': book.bcomment,
-                'bpub_date': book.bpub_date,
-            }
-        )
+        return JsonResponse(ser.data)

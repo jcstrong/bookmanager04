@@ -19,6 +19,6 @@ class BookSerializer(serializers.Serializer):
 
     def update(self, instance, validated_data):
         instance.btitle = validated_data['btitle']
-        instance.save()
+        instance.save() # 不是同一个save
         return instance
 
